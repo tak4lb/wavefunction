@@ -7,29 +7,31 @@ import numpy as np
 #
 # Fourier series basis for periodic potentials
 #
+# Some code is modified becaus Numpy does not accept float as valid indices.
+#
 
 def index_m2v(L, n1, n2):
-    return (2*L+1) * (n1+L) + (n2+L)
+    return int((2*L+1) * (n1+L) + (n2+L))
 
 def index_v2m(L, N):
     
     n1 = np.floor(N / (2 * L + 1)) - L
     n2 = N - (2 * L + 1) * (n1 + L) - L
     
-    return n1, n2
+    return int(n1), int(n2)
 
 def index_s2a(L, s):
     """
     Convert mathematical sum index to an array (vector/matrix) index.
     """
-    return s + L
+    return int(s + L)
 
 def index_a2s(L, a):
     """
     Convert an array (vector/matrix) index to mathematical sum index.
     """
     
-    return a - L 
+    return int(a - L) 
 
 
 def delta(a, b):
